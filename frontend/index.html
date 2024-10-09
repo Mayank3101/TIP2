@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<title>Data Threats</title>
+<head></head>
+<link rel="stylesheet" href="/index.css">
+<body>
+ 
+        <h1>WELCOME TO CYBER DEFENCE ANALYTICS</h1>
+
+        <div class="container">
+            <div class="card">
+                <img src="/photo/back1.jpeg" alt="Main Card Image" class="card-image">
+                <div class="card-content">
+                    
+                    <div class="nested-cards">
+                        <div class="nested-card">
+                            <img src="/photo/wallet.png" alt="Icon 1" class="icon">
+                            <a href="#" class="link-text">Data Analysis</a>
+                        </div>
+                        <div class="nested-card">
+                            <img src="/photo/threat.png" alt="Icon 2" class="icon">
+                            <a href="#" class="link-text">Threat Prediction</a>
+                        </div>
+                        <div class="nested-card">
+                            <img src="/photo/management.png" alt="Icon 3" class="icon">
+                            <a href="#" class="link-text">Management</a>
+                        </div>
+                        <div class="nested-card">
+                            <img src="/photo/setting.png" alt="Icon 4" class="icon">
+                            <a href="#" class="link-text">Settings</a>
+                        </div>
+                        
+                    </div>
+                    <div class="text-box-container">
+                        <label for="input-text" class="text-box-label">Alert Threat notification bar</label>
+                        <input type="text" id="input-text" class="text-box" placeholder="No Active Threat">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">DATA ANALYSIS</h2>
+                <div class="card-content">
+                    <div class="drag-drop-area" id="drop-area">
+                        Drag & Drop your files here
+                    </div>
+                    <input type="file" id="fileElem" multiple accept="*/*" style="display:none;" onchange="handleFiles(this.files)">
+                    <button class="card-button" onclick="document.getElementById('fileElem').click();">
+                        <img src="/photo/upload.png" alt="Upload" style="width: 16px; height: 16px; margin-right: 5px;"> Upload File
+                    </button>
+                    <div class="button-container">
+                        <button class="card-button">Submit</button>
+                        <button class="card-button">Cancel</button>
+                        
+                    </div>
+                    <div class="text-panel" id="text-panel">Updates will appear here.</div>
+                    <div class="button-container">
+                    <button class="card-button">Home</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">THREAT PREDICTION</h2>
+                <div class="card-content">
+                    <div class="drag-drop-area" id="drop-area">
+                        Real Time Threat Prediction
+                        <img src="/photo/analysis.png" alt="icon5" class="icon">
+                    </div>
+                    <div class="text-panel1" id="text-panel">Threat Severity Score...</div>
+                    <div class="text-container1">
+                        <div class="text-panel2" id="text-panel">Low</div>
+                        <div class="text-panel2" id="text-panel">Medium</div>
+                        <div class="text-panel2" id="text-panel">High</div>
+                        
+                    </div>
+                    <div class="text-panel1" id="text-panel">Threat analysis provide in depth details for each 
+                        Predicted threat, including potential attacks. 
+                    </div>
+                    <div class="button-container">
+                    <button class="card-button">Home</button>
+                    <a href="/Dashborad.html"><button class="card-button" >See</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</body>

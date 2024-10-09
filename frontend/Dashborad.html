@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threat Analysis Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <style>
+        #threat-info {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Threat Analysis Dashboard</h1>
+
+    <div id="threat-info">
+        <p><strong>Type of Attack:</strong> <span id="attack-type"></span></p>
+        <p><strong>Affected Systems:</strong> <span id="affected-systems"></span></p>
+        <p><strong>Attack Vector:</strong> <span id="attack-vector"></span></p>
+        <p><strong>Mitigation Suggestion:</strong> <span id="mitigation"></span></p>
+        <p><strong>Severity Score:</strong> <span id="severity-score"></span></p>
+    </div>
+
+    <canvas id="severity-chart" width="400" height="200"></canvas>
+
+    <script>
+        const ctx = document.getElementById('severity-chart').getContext('2d');
+        let severityChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Severity'],
+                datasets: [{
+                    label: 'Severity Score',
+                    data: [0],
+                    backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                    borderColor: ['rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10
+                    }
+                }
+            }
+        });
+
+        // Connecting to Flask-SocketIO
+        const socket = io();
+
+        // Request threat data when the page loads
+        socket.emit('get_threat_data');
+
+        // Listen for updates
+        socket.on('update_threat', function(data) {
+            let threat = JSON.parse(data);
+            document.getElementById('attack-type').innerText = threat.type;
+            document.getElementById('affected-systems').innerText = threat.affected_systems.join(', ');
+            document.getElementById('attack-vector').innerText = threat.attack_vector;
+            document.getElementById('mitigation').innerText = threat.mitigation;
+            document.getElementById('severity-score').innerText = threat.severity_score;
+
+            // Update chart with new severity score
+            severityChart.data.datasets[0].data = [threat.severity_score];
+            severityChart.update();
+        });
+    </script>
+</body>
+</html>
